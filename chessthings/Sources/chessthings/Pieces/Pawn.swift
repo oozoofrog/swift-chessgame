@@ -41,4 +41,9 @@ public final class Pawn: Piece {
     
     public var location: Location
     
+    public func available(location: Location) -> Bool {
+        guard location.file == self.location.file else {
+            return false
+        }
+    }
 }
