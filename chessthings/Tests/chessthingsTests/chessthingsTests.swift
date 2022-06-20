@@ -3,24 +3,6 @@ import XCTest
 
 final class chessthingsTests: XCTestCase {
     
-    func testPawn() {
-        for rank in Rank.allCases {
-            for file in File.allCases {
-                let location = Location(rank: rank, file: file)
-                if rank == .two {
-                    XCTAssertNotNil(Pawn(.black, location: location))
-                    XCTAssertNil(Pawn(.white, location: location))
-                } else if rank == .seven {
-                    XCTAssertNotNil(Pawn(.white, location: location))
-                    XCTAssertNil(Pawn(.black, location: location))
-                } else {
-                    XCTAssertNil(Pawn(.white, location: location))
-                    XCTAssertNil(Pawn(.black, location: location))
-                }
-            }
-        }
-    }
-    
     func testBoardPrepare() throws {
         let board = Board()
         
@@ -32,20 +14,42 @@ final class chessthingsTests: XCTestCase {
         
         board.prepare()
         
-        // expect
+        
+        // pawn
         for rank in Rank.allCases {
             for file in File.allCases {
                 let location = Location(rank: rank, file: file)
-                let description = location.description
+                let description = "pawn \(location.description)"
                 let piece = board.piece(at: location)
                 if rank == .two {
-                    XCTAssertNotNil(piece, description)
-                    XCTAssertTrue(piece is Pawn)
+                    XCTAssertTrue(piece is Pawn, description)
+                    XCTAssertEqual(piece?.side, .black, description)
                 } else if rank == .seven {
-                    XCTAssertNotNil(board.piece(at: location), description)
-                    XCTAssertTrue(piece is Pawn)
+                    XCTAssertTrue(piece is Pawn, description)
+                    XCTAssertEqual(piece?.side, .white, description)
                 } else {
                     XCTAssertNil(board.piece(at: location), description)
+                }
+            }
+        }
+        
+        // bishop
+        for rank in Rank.allCases {
+            for file in File.allCases {
+                let location = Location(rank: rank, file: file)
+                let description = "bishop \(location.description)"
+                let piece = board.piece(at: location)
+                if [File.C, .F].contains(file) {
+                    switch rank {
+                    case .one:
+                        XCTAssertTrue(piece is Bishop, description)
+                        XCTAssertEqual(piece?.side, .black, description)
+                    case .eight:
+                        XCTAssertTrue(piece is Bishop, description)
+                        XCTAssertEqual(piece?.side, .white, description)
+                    default:
+                        continue
+                    }
                 }
             }
         }
