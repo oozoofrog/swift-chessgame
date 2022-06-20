@@ -47,9 +47,9 @@ public final class Board {
     func point(for side: Side) -> Int {
         switch side {
         case .black:
-            return 0
+            return pieces.filter({ $0.side == .black }).map(\.point).reduce(0, +)
         case .white:
-            return 0
+            return pieces.filter({ $0.side == .white }).map(\.point).reduce(0, +)
         }
     }
 }
