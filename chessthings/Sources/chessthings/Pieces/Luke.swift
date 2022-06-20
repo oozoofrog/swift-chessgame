@@ -41,7 +41,7 @@ public final class Luke: Piece {
     
     public var location: Location
     
-    func available(location: Location) -> Bool {
+    public func available(location: Location) -> Bool {
         false
     }
 }

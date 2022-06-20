@@ -19,6 +19,10 @@ public final class Board {
         return displays.joined(separator: "\n")
     }
     
+    public func availableLocation(from location: Location) -> Location? {
+        nil
+    }
+    
     public func prepare() {
         // pawn
         for file in File.allCases {
@@ -91,11 +95,39 @@ public enum File: String, CaseIterable, Hashable {
     case A, B, C, D, E, F, G, H
 }
 
+@dynamicMemberLookup
 public struct Location: Hashable, CustomStringConvertible {
+    
+    public init?(string: String) {
+        guard string.count == 2 else {
+            return nil
+        }
+        guard let first = string.first?.description, let file = File(rawValue: first) else {
+            return nil
+        }
+        guard let last = string.last?.description, let number = Int(last) else {
+            return nil
+        }
+        guard let rank = Rank(rawValue: number) else {
+            return nil
+        }
+        self.file = file
+        self.rank = rank
+    }
+    
+    public init(file: File, rank: Rank) {
+        self.file = file
+        self.rank = rank
+    }
+    
     let file: File
     let rank: Rank
     
     public var description: String {
         "Location.\(file.rawValue)\(rank.rawValue)"
+    }
+    
+    static subscript(dynamicMember location: String) -> Location? {
+        Location(string: location)
     }
 }

@@ -45,5 +45,11 @@ public final class Pawn: Piece {
         guard location.file == self.location.file else {
             return false
         }
+        switch side {
+        case .black:
+            return location.rank.rawValue - self.location.rank.rawValue == 1
+        case .white:
+            return self.location.rank.rawValue - location.rank.rawValue == 1
+        }
     }
 }

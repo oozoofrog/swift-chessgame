@@ -41,7 +41,7 @@ public final class Bishop: Piece {
     
     public var location: Location
     
-    func available(location: Location) -> Bool {
+    public func available(location: Location) -> Bool {
         false
     }
 }

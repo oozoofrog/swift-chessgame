@@ -9,12 +9,12 @@ import XCTest
 @testable import chessthings
 
 class PiecesTests: XCTestCase {
-
+    
     func testPawn() {
         let blackPawn = Pawn(.black, location: .init(file: .A, rank: .two))
         XCTAssertEqual(blackPawn?.icon, "♟")
         XCTAssertEqual(blackPawn?.point, 1)
-        
+             
         let whitePawn = Pawn(.white, location: .init(file: .A, rank: .seven))
         XCTAssertEqual(whitePawn?.icon, "♙")
         XCTAssertEqual(whitePawn?.point, 1)
