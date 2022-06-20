@@ -23,7 +23,7 @@ class BoardTests: XCTestCase {
         XCTAssertEqual(board.point(for: .black), 1 * 8 + 3 * 2 + 5 * 2)
         XCTAssertEqual(board.point(for: .white), 1 * 8 + 3 * 2 + 5 * 2)
         
-        let expect = """
+        XCTAssertEqual(board.display(), """
          ABCDEFGH
         1♜.♝..♝.♜
         2♟♟♟♟♟♟♟♟
@@ -34,17 +34,49 @@ class BoardTests: XCTestCase {
         7♙♙♙♙♙♙♙♙
         8♖.♗..♗.♖
          ABCDEFGH
-        """
-        let dispaly = board.display()
-        XCTAssertEqual(dispaly, expect, "\n\(dispaly)\nis not equal\n\(expect)")
+        """)
         
         let piece = board.piece(at: Location.A2)
         XCTAssertNotNil(piece)
         XCTAssertEqual(board.availableLocations(from: Location.A2), [Location.A3])
         
+        // black pawn A2 > A3
         let result = board.move(to: Location.A3, from: Location.A2)
         XCTAssertTrue(result)
         XCTAssertEqual(piece?.location, Location.A3)
+        
+        XCTAssertEqual(board.display(), """
+         ABCDEFGH
+        1♜.♝..♝.♜
+        2.♟♟♟♟♟♟♟
+        3♟.......
+        4........
+        5........
+        6........
+        7♙♙♙♙♙♙♙♙
+        8♖.♗..♗.♖
+         ABCDEFGH
+        """)
+        
+        let bishop = board.piece(at: Location.C1)! as! Bishop
+        XCTAssertEqual(board.availableLocations(from: Location.C1), [])
+        
+        XCTAssertTrue(board.move(to: Location.B3, from: Location.B2))
+        
+        XCTAssertEqual(board.display(), """
+         ABCDEFGH
+        1♜.♝..♝.♜
+        2..♟♟♟♟♟♟
+        3♟♟......
+        4........
+        5........
+        6........
+        7♙♙♙♙♙♙♙♙
+        8♖.♗..♗.♖
+         ABCDEFGH
+        """)
+        
+        XCTAssertEqual(board.availableLocations(from: Location.C1), [Location.B2])
     }
     
 }
