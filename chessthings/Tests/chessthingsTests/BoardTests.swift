@@ -40,7 +40,7 @@ class BoardTests: XCTestCase {
         
         let piece = board.piece(at: Location.A2)
         XCTAssertNotNil(piece)
-        XCTAssertEqual(board.availableLocation(from: Location.A2), Location.A3)
+        XCTAssertEqual(board.availableLocations(from: Location.A2), [Location.A3])
         
         let result = board.move(to: Location.A3, from: Location.A2)
         XCTAssertTrue(result)

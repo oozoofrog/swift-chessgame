@@ -19,28 +19,43 @@ public final class Board {
         return displays.joined(separator: "\n")
     }
     
-    public func availableLocation(from location: Location?) -> Location? {
-        guard let location = location else {
-            return nil
+    public func move(to: Location?, from: Location?) -> Bool {
+        guard let to = to, let from = from else {
+            return false
         }
+
+        guard var piece = self.piece(at: from) else {
+            return false
+        }
+        guard availableLocations(from: from).contains(to) else {
+            return false
+        }
+        piece.location = to
+        return true
+    }
+    
+    public func availableLocations(from location: Location?) -> [Location] {
+        guard let location = location else {
+            return []
+        }
+        
+        var locations: [Location] = []
 
         if let pawn = piece(at: location) as? Pawn {
             switch pawn.side {
             case .black:
                 guard let nextRank = pawn.location.rank.next(1) else {
-                    return nil
+                    return []
                 }
-                let nextLocation = Location(file: location.file, rank: nextRank)
-                return nextLocation
+                locations.append(Location(file: location.file, rank: nextRank))
             case .white:
                 guard let nextRank = pawn.location.rank.next(-1) else {
-                    return nil
+                    return []
                 }
-                let nextLocation = Location(file: location.file, rank: nextRank)
-                return nextLocation
+                locations.append(Location(file: location.file, rank: nextRank))
             }
         }
-        return nil
+        return locations
     }
     
     public func prepare() {

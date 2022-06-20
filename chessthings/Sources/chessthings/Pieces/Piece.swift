@@ -14,7 +14,7 @@ public protocol Piece: CustomStringConvertible {
     var point: Int { get }
     var icon: Character { get }
     
-    var location: Location { get }
+    var location: Location { get set }
     
     func available(location: Location?) -> Bool
 }
