@@ -71,7 +71,9 @@ final class chessthingsTests: XCTestCase {
     }
     
     func testBoardEmpty() {
-        
+        for location in prepared.empties {
+            XCTAssertNil(board.piece(at: location), location.description)
+        }
     }
     
     struct PreparedLocations {
@@ -85,10 +87,23 @@ final class chessthingsTests: XCTestCase {
             return locations
         }()
         
+        var empties: [Location] {
+            var empties = self.locations
+            empties.removeAll(where: blackPawns.contains)
+            empties.removeAll(where: whitePawns.contains)
+            empties.removeAll(where: blackBishops.contains)
+            empties.removeAll(where: whiteBishops.contains)
+            empties.removeAll(where: blackLukes.contains)
+            empties.removeAll(where: whiteLukes.contains)
+            return empties
+        }
+        
         let blackPawns = File.allCases.map({ Location(file: $0, rank: .two) })
         let whitePawns = File.allCases.map({ Location(file: $0, rank: .seven) })
+        
         let blackBishops = [Location(file: .C, rank: .one), .init(file: .F, rank: .one)]
         let whiteBishops = [Location(file: .C, rank: .eight), .init(file: .F, rank: .eight)]
+        
         let blackLukes = [Location(file: .A, rank: .one), .init(file: .H, rank: .one)]
         let whiteLukes = [Location(file: .A, rank: .eight), .init(file: .H, rank: .eight)]
     }
