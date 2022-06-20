@@ -6,9 +6,17 @@ public final class Board {
     private(set) var pieces: [Piece] = []
     
     public func display() -> String {
-        var test = """
-        """
-        return test
+        var displays: [String] = [" \(File.allCases.map(\.rawValue).joined())"]
+        for rank in Rank.allCases {
+            var display = rank.rawValue.description
+            for file in File.allCases {
+                let location = Location(file: file, rank: rank)
+                display.append(icon(at: location))
+            }
+            displays.append(display)
+        }
+        displays.append(" \(File.allCases.map(\.rawValue).joined())")
+        return displays.joined(separator: "\n")
     }
     
     public func prepare() {
