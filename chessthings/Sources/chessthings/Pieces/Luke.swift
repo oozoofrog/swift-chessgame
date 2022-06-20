@@ -27,15 +27,15 @@ public final class Luke: Piece {
     public let side: Side
     
     public var point: Int {
-        1
+        5
     }
     
     public var icon: Character {
         switch side {
         case .black:
-            return "♟"
+            return "♜"
         case .white:
-            return "♙"
+            return "♖"
         }
     }
     

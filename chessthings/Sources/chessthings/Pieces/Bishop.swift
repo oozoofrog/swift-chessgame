@@ -27,15 +27,15 @@ public final class Bishop: Piece {
     public let side: Side
     
     public var point: Int {
-        1
+        3
     }
     
     public var icon: Character {
         switch side {
         case .black:
-            return "♟"
+            return "♝"
         case .white:
-            return "♙"
+            return "♗"
         }
     }
     

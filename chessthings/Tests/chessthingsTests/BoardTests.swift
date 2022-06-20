@@ -19,9 +19,9 @@ class BoardTests: XCTestCase {
     
     func testAction() {
         // Board는 현재 있는 말을 확인해서 흑과 백 점수를 출력한다.
-        // 색상별로 Pawn 1점, Bishop와 Knight 3점, Luke 5점, 퀸은 9점으로 계산한다.
-        XCTAssertEqual(board.point(for: .black), 1 * 8 + 3 * 2 + 3 * 2 + 5 * 2 + 9)
-        XCTAssertEqual(board.point(for: .white), 1 * 8 + 3 * 2 + 3 * 2 + 5 * 2 + 9)
+        // 색상별로 Pawn 1점, Bishop 3점, Luke 5점 계산한다.
+        XCTAssertEqual(board.point(for: .black), 1 * 8 + 3 * 2 + 5 * 2)
+        XCTAssertEqual(board.point(for: .white), 1 * 8 + 3 * 2 + 5 * 2)
 //        Board는 모든 말의 위치를 알 수 있고, display() 함수는 1-rank부터 8-rank까지 rank 문자열 배열로 보드 위에 체스말을 리턴한다
 //        흑색 Pawn는 ♟ U+265F, Knight는 ♞ U+265E, Biship은 ♝ U+265D, Luke는 ♜ U+265C, Queen은 ♛ U+265B를 빈 곳은 "."을 표시한다.
 //        백색 Pawn는 ♙ U+2659, Knight는 ♘ U+2658, Biship은 ♗ U+2657, Luke는 ♖ U+2656, Queen은 ♕ U+2655를 빈 곳은 "."을 표시한다.
