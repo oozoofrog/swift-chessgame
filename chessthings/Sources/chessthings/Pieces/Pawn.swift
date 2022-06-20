@@ -9,7 +9,7 @@ import Foundation
 
 public final class Pawn: Piece {
     
-    public init(_ side: Side, location: Location) {
+    public init?(_ side: Side, location: Location) {
         self.side = side
         self.location = location
     }

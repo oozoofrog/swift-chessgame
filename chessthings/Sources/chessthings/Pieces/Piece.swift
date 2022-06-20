@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol Piece {
-    init(_ side: Side, location: Location)
+    init?(_ side: Side, location: Location)
     
     var side: Side { get }
     var point: Int { get }
