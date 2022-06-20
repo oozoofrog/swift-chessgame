@@ -43,10 +43,11 @@ class BoardTests: XCTestCase {
         5........
         6........
         7♙♙♙♙♙♙♙♙
-        8♖♘♗.♕♗♘♖
+        8♖.♗..♗.♖
          ABCDEFGH
         """
-        XCTAssertEqual(board.display(), expect)
+        let dispaly = board.display()
+        XCTAssertEqual(dispaly, expect, "\n\(dispaly)\nis not equal\n\(expect)")
 //        특정 말을 옮기는 메소드는 Board에서 제공한다.
 //        같은 색상의 말이 to 위치에 다른 말이 이미 있으면 옮길 수 없다.
 //        말을 옮길 수 있으면 true, 옮길 수 없으면 false를 리턴한다.

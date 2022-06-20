@@ -5,6 +5,12 @@ public final class Board {
     
     private(set) var pieces: [Piece] = []
     
+    public func display() -> String {
+        var test = """
+        """
+        return test
+    }
+    
     public func prepare() {
         // pawn
         for file in File.allCases {
