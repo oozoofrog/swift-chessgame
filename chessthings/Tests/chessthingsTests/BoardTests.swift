@@ -59,9 +59,11 @@ class BoardTests: XCTestCase {
          ABCDEFGH
         """)
         
+        // black bishop C1 > D2
         let bishop = board.piece(at: Location.C1)! as! Bishop
         XCTAssertEqual(board.availableLocations(from: Location.C1), [])
         
+        // pawn B2 > B3
         XCTAssertTrue(board.move(to: Location.B3, from: Location.B2))
         
         XCTAssertEqual(board.display(), """
@@ -78,6 +80,29 @@ class BoardTests: XCTestCase {
         """)
         
         XCTAssertEqual(board.availableLocations(from: Location.C1), [Location.B2])
+        
+        XCTAssertFalse(board.move(to: Location.D2, from: Location.C1))
+        
+        XCTAssertEqual(bishop.location, Location.C1)
+        
+        XCTAssertTrue(board.move(to: Location.D3, from: Location.D2))
+        
+        XCTAssertEqual(board.availableLocations(from: Location.C1), [Location.B2, Location.D2])
+        
+        XCTAssertTrue(board.move(to: Location.D2, from: Location.C1))
+        
+        XCTAssertEqual(board.display(), """
+         ABCDEFGH
+        1♜....♝.♜
+        2..♟♝♟♟♟♟
+        3♟♟.♟....
+        4........
+        5........
+        6........
+        7♙♙♙♙♙♙♙♙
+        8♖.♗..♗.♖
+         ABCDEFGH
+        """)
     }
     
 }

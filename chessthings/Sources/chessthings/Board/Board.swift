@@ -43,7 +43,15 @@ public final class Board {
             return []
         }
         
-        return piece.availableLocations(locations())
+        var pieceAvailableLocations = piece.availableLocations(locations())
+        for location in pieceAvailableLocations {
+            if let pieceAtLocation = self.piece(at: location) {
+                if pieceAtLocation.side == piece.side {
+                    pieceAvailableLocations.removeAll(where: { $0 == location })
+                }
+            }
+        }
+        return pieceAvailableLocations
     }
     
     public func prepare() {
