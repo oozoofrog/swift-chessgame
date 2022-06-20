@@ -41,15 +41,18 @@ public final class Pawn: Piece {
     
     public var location: Location
     
-    public func available(location: Location) -> Bool {
-        guard location.file == self.location.file else {
+    public func available(location: Location?) -> Bool {
+        guard let newLocation = location else {
+            return false
+        }
+        guard newLocation.file == self.location.file else {
             return false
         }
         switch side {
         case .black:
-            return location.rank.rawValue - self.location.rank.rawValue == 1
+            return newLocation.rank.rawValue - self.location.rank.rawValue == 1
         case .white:
-            return self.location.rank.rawValue - location.rank.rawValue == 1
+            return self.location.rank.rawValue - newLocation.rank.rawValue == 1
         }
     }
 }

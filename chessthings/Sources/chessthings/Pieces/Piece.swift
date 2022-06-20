@@ -16,7 +16,7 @@ public protocol Piece: CustomStringConvertible {
     
     var location: Location { get }
     
-    func available(location: Location) -> Bool
+    func available(location: Location?) -> Bool
 }
 
 extension Piece {

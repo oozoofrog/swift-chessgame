@@ -19,7 +19,7 @@ public final class Board {
         return displays.joined(separator: "\n")
     }
     
-    public func availableLocation(from location: Location) -> Location? {
+    public func availableLocation(from location: Location?) -> Location? {
         nil
     }
     
