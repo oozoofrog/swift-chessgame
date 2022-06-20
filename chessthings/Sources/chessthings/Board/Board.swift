@@ -49,8 +49,12 @@ public final class Board {
     public func piece(at location: Location) -> Piece? {
         self.pieces.first(where: { $0.location == location })
     }
+    
+    public func icon(at location: Location) -> Character {
+        return self.piece(at: location)?.icon ?? "."
+    }
 
-    func point(for side: Side) -> Int {
+    public func point(for side: Side) -> Int {
         switch side {
         case .black:
             return pieces.filter({ $0.side == .black }).map(\.point).reduce(0, +)
