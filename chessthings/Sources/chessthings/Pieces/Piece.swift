@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol Piece {
+public protocol Piece: CustomStringConvertible {
     init?(_ side: Side, location: Location)
     
     var side: Side { get }
@@ -17,4 +17,10 @@ public protocol Piece {
     var location: Location { get }
     
     func move(to location: Location) -> Bool
+}
+
+extension Piece {
+    public var description: String {
+        "\(side.rawValue) \(type(of: self)).\(location)"
+    }
 }

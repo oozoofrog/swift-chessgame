@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum Side: Hashable {
-    case black
-    case white
+public enum Side: String {
+    case black = "Black"
+    case white = "White"
 }

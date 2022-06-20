@@ -6,15 +6,26 @@ public final class Board {
     private var pieces: [Piece] = []
     
     public func prepare() {
-        // black&white pawn
+        // pawn
         for file in File.allCases {
-            if let black = Pawn(.black, location: Location(rank: .two, file: file)) {
+            if let black = Pawn(.black, location: Location(file: file, rank: .two)) {
                 pieces.append(black)
             }
-            if let white = Pawn(.white, location: Location(rank: .seven, file: file)) {
+            if let white = Pawn(.white, location: Location(file: file, rank: .seven)) {
                 pieces.append(white)
             }
         }
+        // bishop
+        let blackBishopLocations = [
+            Location(file: .C, rank: .one),
+            Location(file: .F, rank: .one)
+        ]
+        let whiteBishopLocations = [
+            Location(file: .C, rank: .eight),
+            Location(file: .F, rank: .eight)
+        ]
+        pieces.append(contentsOf: blackBishopLocations.compactMap({ Bishop(.black, location: $0) }))
+        pieces.append(contentsOf: whiteBishopLocations.compactMap({ Bishop(.white, location: $0) }))
     }
     
     public func piece(at location: Location) -> Piece? {
@@ -43,8 +54,8 @@ public enum File: String, CaseIterable, Hashable {
 }
 
 public struct Location: Hashable, CustomStringConvertible {
-    let rank: Rank
     let file: File
+    let rank: Rank
     
     public var description: String {
         "Location.\(file.rawValue)\(rank.rawValue)"
