@@ -26,6 +26,18 @@ public final class Board {
         ]
         pieces.append(contentsOf: blackBishopLocations.compactMap({ Bishop(.black, location: $0) }))
         pieces.append(contentsOf: whiteBishopLocations.compactMap({ Bishop(.white, location: $0) }))
+        
+        // luke
+        let blackLukeLocations = [
+            Location(file: .A, rank: .one),
+            Location(file: .H, rank: .one)
+        ]
+        let whiteLukeLocations = [
+            Location(file: .A, rank: .eight),
+            Location(file: .H, rank: .eight)
+        ]
+        pieces.append(contentsOf: blackLukeLocations.compactMap({ Luke(.black, location: $0) }))
+        pieces.append(contentsOf: whiteLukeLocations.compactMap({ Luke(.white, location: $0) }))
     }
     
     public func piece(at location: Location) -> Piece? {
