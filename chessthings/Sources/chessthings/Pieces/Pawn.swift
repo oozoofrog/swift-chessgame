@@ -10,20 +10,28 @@ import Foundation
 public struct Pawn: Hashable {
     
     public init(_ side: Side) {
+        self.side = side
+    }
+    
+    let side: Side
+    let uuid: UUID = UUID()
+    
+    var icon: Character {
         switch side {
         case .black:
-            self.icon = '♟'
+            return "♟"
         case .white:
-            self.icon = '♙'
+            return "♙"
         }
     }
     
-    let icon: Character
-    
-    let uuid: UUID = UUID()
+    public func moveableTo(rank: Board.Rank, file: Board.File) -> Bool {
+        false
+    }
     
     public func hash(into hasher: inout Hasher) {
         hasher.combine(icon)
+        hasher.combine(side)
         hasher.combine(uuid)
     }
     

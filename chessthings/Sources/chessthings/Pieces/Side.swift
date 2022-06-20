@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum Side {
+public enum Side: Hashable {
     case black
     case white
 }
