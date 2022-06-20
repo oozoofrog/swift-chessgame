@@ -44,6 +44,14 @@ public final class Board {
         self.pieces.first(where: { $0.location == location })
     }
 
+    func point(for side: Side) -> Int {
+        switch side {
+        case .black:
+            return 0
+        case .white:
+            return 0
+        }
+    }
 }
 
 public enum Rank: Int, CaseIterable, Hashable, Comparable {
