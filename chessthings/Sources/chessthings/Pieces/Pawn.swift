@@ -55,4 +55,5 @@ public final class Pawn: Piece {
             return self.location.rank.rawValue - newLocation.rank.rawValue == 1
         }
     }
+
 }

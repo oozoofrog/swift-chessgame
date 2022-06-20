@@ -39,23 +39,11 @@ public final class Board {
             return []
         }
         
-        var locations: [Location] = []
-
-        if let pawn = piece(at: location) as? Pawn {
-            switch pawn.side {
-            case .black:
-                guard let nextRank = pawn.location.rank.next(1) else {
-                    return []
-                }
-                locations.append(Location(file: location.file, rank: nextRank))
-            case .white:
-                guard let nextRank = pawn.location.rank.next(-1) else {
-                    return []
-                }
-                locations.append(Location(file: location.file, rank: nextRank))
-            }
+        guard let piece = self.piece(at: location) else {
+            return []
         }
-        return locations
+        
+        return piece.availableLocations(locations())
     }
     
     public func prepare() {
@@ -98,6 +86,16 @@ public final class Board {
             return nil
         }
         return self.pieces.first(where: { $0.location == location })
+    }
+    
+    private func locations() -> [Location] {
+        var locations: [Location] = []
+        for file in File.allCases {
+            for rank in Rank.allCases {
+                locations.append(Location(file: file, rank: rank))
+            }
+        }
+        return locations
     }
     
     public func icon(at location: Location) -> Character {

@@ -17,9 +17,15 @@ public protocol Piece: CustomStringConvertible {
     var location: Location { get set }
     
     func available(location: Location?) -> Bool
+    func availableLocations(_ locations: [Location]) -> [Location]
 }
 
 extension Piece {
+    
+    public func availableLocations(_ locations: [Location]) -> [Location] {
+        locations.filter(available)
+    }
+    
     public var description: String {
         "\(side.rawValue) \(type(of: self)).\(location)"
     }

@@ -11,6 +11,7 @@ import XCTest
 class BoardTests: XCTestCase {
 
     var board: Board!
+    let prepared = PreparedLocations()
     
     override func setUpWithError() throws {
         board = Board()
@@ -36,14 +37,14 @@ class BoardTests: XCTestCase {
          ABCDEFGH
         """)
         
-        let piece = board.piece(at: Location.A2)
-        XCTAssertNotNil(piece)
+        let pawn = board.piece(at: Location.A2)! as! Pawn
+        XCTAssertEqual(pawn.availableLocations(prepared.locations), [Location.A3])
         XCTAssertEqual(board.availableLocations(from: Location.A2), [Location.A3])
         
         // black pawn A2 > A3
         let result = board.move(to: Location.A3, from: Location.A2)
         XCTAssertTrue(result)
-        XCTAssertEqual(piece?.location, Location.A3)
+        XCTAssertEqual(pawn.location, Location.A3)
         
         XCTAssertEqual(board.display(), """
          ABCDEFGH
