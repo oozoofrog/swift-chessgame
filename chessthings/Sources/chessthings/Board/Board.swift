@@ -3,7 +3,7 @@ import Foundation
 
 public final class Board {
     
-    private var pieces: [Piece] = []
+    private(set) var pieces: [Piece] = []
     
     public func prepare() {
         // pawn
