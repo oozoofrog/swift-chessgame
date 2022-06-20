@@ -39,24 +39,6 @@ public final class Bishop: Piece {
         }
     }
     
-    private(set) public var location: Location
-    
-    public func move(to location: Location) -> Bool {
-        guard self.location.file == location.file else {
-            return false
-        }
-        switch side {
-        case .black:
-            guard self.location.rank > location.rank else {
-                return false
-            }
-        case .white:
-            guard self.location.rank < location.rank else {
-                return false
-            }
-        }
-        self.location = location
-        return true
-    }
+    public var location: Location
     
 }

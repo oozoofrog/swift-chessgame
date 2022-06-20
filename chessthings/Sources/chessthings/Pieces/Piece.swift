@@ -15,8 +15,6 @@ public protocol Piece: CustomStringConvertible {
     var icon: Character { get }
     
     var location: Location { get }
-    
-    func move(to location: Location) -> Bool
 }
 
 extension Piece {
