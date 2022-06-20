@@ -11,7 +11,7 @@ public final class Board {
             if let black = Pawn(.black, location: Location(rank: .two, file: file)) {
                 pieces.append(black)
             }
-            if let white = Pawn(.white, location: Location(rank: .two, file: file)) {
+            if let white = Pawn(.white, location: Location(rank: .seven, file: file)) {
                 pieces.append(white)
             }
         }

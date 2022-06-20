@@ -11,6 +11,16 @@ public final class Pawn: Piece {
     
     public init?(_ side: Side, location: Location) {
         self.side = side
+        switch side {
+        case .black:
+            guard location.rank == .two else {
+                return nil
+            }
+        case .white:
+            guard location.rank == .seven else {
+                return nil
+            }
+        }
         self.location = location
     }
     
