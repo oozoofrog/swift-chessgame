@@ -78,8 +78,11 @@ public final class Board {
         pieces.append(contentsOf: whiteLukeLocations.compactMap({ Luke(.white, location: $0) }))
     }
     
-    public func piece(at location: Location) -> Piece? {
-        self.pieces.first(where: { $0.location == location })
+    public func piece(at location: Location?) -> Piece? {
+        guard let location = location else {
+            return nil
+        }
+        return self.pieces.first(where: { $0.location == location })
     }
     
     public func icon(at location: Location) -> Character {

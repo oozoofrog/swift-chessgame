@@ -46,6 +46,12 @@ public struct Location: Hashable, CustomStringConvertible {
 
 public enum File: String, CaseIterable, Hashable {
     case A, B, C, D, E, F, G, H
+    
+    func offset(_ file: File) -> Int {
+        let current = Int(rawValue.first?.asciiValue ?? 0)
+        let other = Int(file.rawValue.first?.asciiValue ?? 0)
+        return other - current
+    }
 }
 
 public enum Rank: Int, CaseIterable, Hashable, Comparable {
@@ -64,5 +70,9 @@ public enum Rank: Int, CaseIterable, Hashable, Comparable {
     
     func next(_ offset: Int) -> Rank? {
         Rank(rawValue: rawValue + offset)
+    }
+    
+    func offset(_ rank: Rank) -> Int {
+        rank.rawValue - rawValue
     }
 }

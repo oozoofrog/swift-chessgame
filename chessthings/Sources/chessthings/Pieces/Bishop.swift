@@ -42,6 +42,18 @@ public final class Bishop: Piece {
     public var location: Location
     
     public func available(location: Location?) -> Bool {
-        false
+        guard let newLocation = location else {
+            return false
+        }
+
+        let isDiagonalFile = abs(self.location.file.offset(newLocation.file)) == 1
+        switch side {
+        case .black:
+            let oneRankUp = self.location.rank.offset(newLocation.rank) == 1
+            return oneRankUp && isDiagonalFile
+        case .white:
+            let oneRankDown = self.location.rank.offset(newLocation.rank) == 1
+            return oneRankDown && isDiagonalFile
+        }
     }
 }
