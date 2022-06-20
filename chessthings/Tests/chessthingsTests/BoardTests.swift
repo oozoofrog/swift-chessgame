@@ -22,6 +22,7 @@ class BoardTests: XCTestCase {
         // 색상별로 Pawn 1점, Bishop 3점, Luke 5점 계산한다.
         XCTAssertEqual(board.point(for: .black), 1 * 8 + 3 * 2 + 5 * 2)
         XCTAssertEqual(board.point(for: .white), 1 * 8 + 3 * 2 + 5 * 2)
+        
 //        Board는 모든 말의 위치를 알 수 있고, display() 함수는 1-rank부터 8-rank까지 rank 문자열 배열로 보드 위에 체스말을 리턴한다
 //        흑색 Pawn는 ♟ U+265F, Knight는 ♞ U+265E, Biship은 ♝ U+265D, Luke는 ♜ U+265C, Queen은 ♛ U+265B를 빈 곳은 "."을 표시한다.
 //        백색 Pawn는 ♙ U+2659, Knight는 ♘ U+2658, Biship은 ♗ U+2657, Luke는 ♖ U+2656, Queen은 ♕ U+2655를 빈 곳은 "."을 표시한다.
@@ -32,6 +33,20 @@ class BoardTests: XCTestCase {
 //        이미 해당 위치에 다른 말이 있으면 생성하지 않는다.
 //        체스말 종류별로 최대 개수보다 많이 생성할 수는 없다.
 //        Pawn는 색상별로 8개. Bishop, Luke는 색상별로 2개, Queen는 색상별로 1개만 가능하다.
+        
+        let expect = """
+         ABCDEFGH
+        1♜.♝..♝.♜
+        2♟♟♟♟♟♟♟♟
+        3........
+        4........
+        5........
+        6........
+        7♙♙♙♙♙♙♙♙
+        8♖♘♗.♕♗♘♖
+         ABCDEFGH
+        """
+        XCTAssertEqual(board.display(), expect)
 //        특정 말을 옮기는 메소드는 Board에서 제공한다.
 //        같은 색상의 말이 to 위치에 다른 말이 이미 있으면 옮길 수 없다.
 //        말을 옮길 수 있으면 true, 옮길 수 없으면 false를 리턴한다.
