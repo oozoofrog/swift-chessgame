@@ -49,10 +49,4 @@ public final class Pawn: Piece {
         return true
     }
     
-    public let id: UUID = UUID()
-    
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-    
 }

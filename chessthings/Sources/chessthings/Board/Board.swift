@@ -3,12 +3,18 @@ import Foundation
 
 public final class Board {
     
+    private var pieces: [Piece] = []
+    
     public func prepare() {
-        
+        // black&white pawn
+        for file in File.allCases {
+            pieces.append(Pawn(.black, location: Location(rank: .two, file: file)))
+            pieces.append(Pawn(.white, location: Location(rank: .seven, file: file)))
+        }
     }
     
     public func piece(at location: Location) -> Piece? {
-        nil
+        self.pieces.first(where: { $0.location == location })
     }
 
 }
@@ -32,7 +38,11 @@ public enum File: String, CaseIterable, Hashable {
     case A, B, C, D, E, F, G, H
 }
 
-public struct Location: Hashable {
+public struct Location: Hashable, CustomStringConvertible {
     let rank: Rank
     let file: File
+    
+    public var description: String {
+        "Location.\(file.rawValue)\(rank.rawValue)"
+    }
 }

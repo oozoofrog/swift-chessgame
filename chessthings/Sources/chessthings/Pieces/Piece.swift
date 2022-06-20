@@ -14,8 +14,6 @@ public protocol Piece {
     var point: Int { get }
     var icon: Character { get }
     
-    var id: UUID { get }
-    
     var location: Location { get }
     
     func move(to location: Location) -> Bool
