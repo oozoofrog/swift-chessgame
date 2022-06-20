@@ -20,7 +20,27 @@ public final class Board {
     }
     
     public func availableLocation(from location: Location?) -> Location? {
-        nil
+        guard let location = location else {
+            return nil
+        }
+
+        if let pawn = piece(at: location) as? Pawn {
+            switch pawn.side {
+            case .black:
+                guard let nextRank = pawn.location.rank.next(1) else {
+                    return nil
+                }
+                let nextLocation = Location(file: location.file, rank: nextRank)
+                return nextLocation
+            case .white:
+                guard let nextRank = pawn.location.rank.next(-1) else {
+                    return nil
+                }
+                let nextLocation = Location(file: location.file, rank: nextRank)
+                return nextLocation
+            }
+        }
+        return nil
     }
     
     public func prepare() {
@@ -73,61 +93,5 @@ public final class Board {
         case .white:
             return pieces.filter({ $0.side == .white }).map(\.point).reduce(0, +)
         }
-    }
-}
-
-public enum Rank: Int, CaseIterable, Hashable, Comparable {
-    public static func < (lhs: Rank, rhs: Rank) -> Bool {
-        lhs.rawValue < rhs.rawValue
-    }
-    
-    case one = 1
-    case two
-    case three
-    case four
-    case five
-    case six
-    case seven
-    case eight
-}
-
-public enum File: String, CaseIterable, Hashable {
-    case A, B, C, D, E, F, G, H
-}
-
-@dynamicMemberLookup
-public struct Location: Hashable, CustomStringConvertible {
-    
-    public init?(string: String) {
-        guard string.count == 2 else {
-            return nil
-        }
-        guard let first = string.first?.description, let file = File(rawValue: first) else {
-            return nil
-        }
-        guard let last = string.last?.description, let number = Int(last) else {
-            return nil
-        }
-        guard let rank = Rank(rawValue: number) else {
-            return nil
-        }
-        self.file = file
-        self.rank = rank
-    }
-    
-    public init(file: File, rank: Rank) {
-        self.file = file
-        self.rank = rank
-    }
-    
-    let file: File
-    let rank: Rank
-    
-    public var description: String {
-        "Location.\(file.rawValue)\(rank.rawValue)"
-    }
-    
-    static subscript(dynamicMember location: String) -> Location? {
-        Location(string: location)
     }
 }

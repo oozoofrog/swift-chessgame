@@ -2,7 +2,7 @@
 //  BoardTests.swift
 //  
 //
-//  Created by jaychoi on 2022/06/20.
+//  Created by oozoofrog on 2022/06/20.
 //
 
 import XCTest
