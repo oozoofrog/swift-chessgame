@@ -3,7 +3,7 @@ import Foundation
 
 public final class Board {
     
-    private(set) var pieces: [Piece] = []
+    private(set) var pieces: [Location: Piece] = [:]
     
     public func display() -> String {
         var displays: [String] = [" \(File.allCases.map(\.rawValue).joined())"]
@@ -23,14 +23,21 @@ public final class Board {
         guard let to = to, let from = from else {
             return false
         }
-
-        guard var piece = self.piece(at: from) else {
+        
+        guard to != from else {
             return false
         }
+
+        guard let piece = self.piece(at: from) else {
+            return false
+        }
+        
         guard availableLocations(from: from).contains(to) else {
             return false
         }
-        piece.location = to
+        
+        pieces[from] = nil
+        pieces[to] = piece
         return true
     }
     
@@ -43,7 +50,7 @@ public final class Board {
             return []
         }
         
-        var pieceAvailableLocations = piece.availableLocations(locations())
+        var pieceAvailableLocations = piece.availableLocations(locations(), from: location)
         for location in pieceAvailableLocations {
             if let pieceAtLocation = self.piece(at: location) {
                 if pieceAtLocation.side == piece.side {
@@ -57,12 +64,8 @@ public final class Board {
     public func prepare() {
         // pawn
         for file in File.allCases {
-            if let black = Pawn(.black, location: Location(file: file, rank: .two)) {
-                pieces.append(black)
-            }
-            if let white = Pawn(.white, location: Location(file: file, rank: .seven)) {
-                pieces.append(white)
-            }
+            pieces[Location(file: file, rank: .two)] = Pawn(.black)
+            pieces[Location(file: file, rank: .seven)] = Pawn(.white)
         }
         // bishop
         let blackBishopLocations = [
@@ -73,8 +76,12 @@ public final class Board {
             Location(file: .C, rank: .eight),
             Location(file: .F, rank: .eight)
         ]
-        pieces.append(contentsOf: blackBishopLocations.compactMap({ Bishop(.black, location: $0) }))
-        pieces.append(contentsOf: whiteBishopLocations.compactMap({ Bishop(.white, location: $0) }))
+        blackBishopLocations.forEach { location in
+            pieces[location] = Bishop(.black)
+        }
+        whiteBishopLocations.forEach { location in
+            pieces[location] = Bishop(.white)
+        }
         
         // luke
         let blackLukeLocations = [
@@ -85,15 +92,28 @@ public final class Board {
             Location(file: .A, rank: .eight),
             Location(file: .H, rank: .eight)
         ]
-        pieces.append(contentsOf: blackLukeLocations.compactMap({ Luke(.black, location: $0) }))
-        pieces.append(contentsOf: whiteLukeLocations.compactMap({ Luke(.white, location: $0) }))
+        blackLukeLocations.forEach { location in
+            pieces[location] = Luke(.black)
+        }
+        whiteLukeLocations.forEach { location in
+            pieces[location] = Luke(.white)
+        }
     }
     
     public func piece(at location: Location?) -> Piece? {
         guard let location = location else {
             return nil
         }
-        return self.pieces.first(where: { $0.location == location })
+        return self.pieces[location]
+    }
+    
+    public func location(of piece: Piece) -> Location? {
+        for (locationInDic, pieceInDic) in pieces {
+            if piece.isEqual(pieceInDic) {
+                return locationInDic
+            }
+        }
+        return nil
     }
     
     private func locations() -> [Location] {
@@ -113,9 +133,9 @@ public final class Board {
     public func point(for side: Side) -> Int {
         switch side {
         case .black:
-            return pieces.filter({ $0.side == .black }).map(\.point).reduce(0, +)
+            return pieces.values.filter({ $0.side == .black }).map(\.point).reduce(0, +)
         case .white:
-            return pieces.filter({ $0.side == .white }).map(\.point).reduce(0, +)
+            return pieces.values.filter({ $0.side == .white }).map(\.point).reduce(0, +)
         }
     }
 }

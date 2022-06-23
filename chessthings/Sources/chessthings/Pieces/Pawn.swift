@@ -9,26 +9,15 @@ import Foundation
 
 public final class Pawn: Piece {
     
-    public init?(_ side: Side, location: Location) {
+    public let uuid: UUID = UUID()
+    
+    public init(_ side: Side) {
         self.side = side
-        switch side {
-        case .black:
-            guard location.rank == .two else {
-                return nil
-            }
-        case .white:
-            guard location.rank == .seven else {
-                return nil
-            }
-        }
-        self.location = location
     }
     
     public let side: Side
     
-    public var point: Int {
-        1
-    }
+    public let point: Int = 1
     
     public var icon: Character {
         switch side {
@@ -39,20 +28,27 @@ public final class Pawn: Piece {
         }
     }
     
-    public var location: Location
-    
-    public func available(location: Location?) -> Bool {
-        guard let newLocation = location else {
+    public func available(to: Location?, from: Location?) -> Bool {
+        guard let to = to else {
             return false
         }
-        guard newLocation.file == self.location.file else {
-            return false
-        }
-        switch side {
-        case .black:
-            return newLocation.rank.rawValue - self.location.rank.rawValue == 1
-        case .white:
-            return self.location.rank.rawValue - newLocation.rank.rawValue == 1
+        if let from = from {
+            guard to.file == from.file else {
+                return false
+            }
+            switch side {
+            case .black:
+                return to.rank.rawValue - from.rank.rawValue == 1
+            case .white:
+                return from.rank.rawValue - to.rank.rawValue == 1
+            }
+        } else {
+            switch side {
+            case .black:
+                return to.rank == .two
+            case .white:
+                return to.rank == .seven
+            }
         }
     }
 

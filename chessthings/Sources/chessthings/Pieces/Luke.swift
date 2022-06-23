@@ -9,26 +9,15 @@ import Foundation
 
 public final class Luke: Piece {
     
-    public init?(_ side: Side, location: Location) {
+    public let uuid: UUID = UUID()
+    
+    public init(_ side: Side) {
         self.side = side
-        switch side {
-        case .black:
-            guard location.rank == .one, [File.A, .H].contains(location.file) else {
-                return nil
-            }
-        case .white:
-            guard location.rank == .eight, [File.A, .H].contains(location.file) else {
-                return nil
-            }
-        }
-        self.location = location
     }
     
     public let side: Side
     
-    public var point: Int {
-        5
-    }
+    public let point: Int = 5
     
     public var icon: Character {
         switch side {
@@ -39,9 +28,19 @@ public final class Luke: Piece {
         }
     }
     
-    public var location: Location
-    
-    public func available(location: Location?) -> Bool {
-        false
+    public func available(to: Location?, from: Location?) -> Bool {
+        guard let to = to else {
+            return false
+        }
+        if let from = from {
+            return false
+        } else {
+            switch side {
+            case .black:
+                return to.rank == .one && [File.A, .H].contains(to.file)
+            case .white:
+                return to.rank == .eight && [File.A, .H].contains(to.file)
+            }
+        }
     }
 }

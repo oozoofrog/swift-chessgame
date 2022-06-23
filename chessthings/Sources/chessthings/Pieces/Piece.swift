@@ -8,25 +8,30 @@
 import Foundation
 
 public protocol Piece: CustomStringConvertible {
-    init?(_ side: Side, location: Location)
+    init(_ side: Side)
+    
+    var uuid: UUID { get }
     
     var side: Side { get }
     var point: Int { get }
     var icon: Character { get }
     
-    var location: Location { get set }
+    func available(to: Location?, from: Location?) -> Bool
     
-    func available(location: Location?) -> Bool
-    func availableLocations(_ locations: [Location]) -> [Location]
+    func isEqual(_ other: Piece) -> Bool
 }
 
 extension Piece {
     
-    public func availableLocations(_ locations: [Location]) -> [Location] {
-        locations.filter(available)
+    public func isEqual(_ other: Piece) -> Bool {
+        uuid == other.uuid
+    }
+    
+    public func availableLocations(_ locations: [Location], from: Location?) -> [Location] {
+        locations.filter({ self.available(to: $0, from: from) })
     }
     
     public var description: String {
-        "\(side.rawValue) \(type(of: self)).\(location)"
+        "\(side.rawValue) \(type(of: self))"
     }
 }

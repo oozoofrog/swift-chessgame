@@ -38,13 +38,13 @@ class BoardTests: XCTestCase {
         """)
         
         let pawn = board.piece(at: Location.A2)! as! Pawn
-        XCTAssertEqual(pawn.availableLocations(prepared.locations), [Location.A3])
+        XCTAssertEqual(pawn.availableLocations(prepared.locations, from: Location.A2), [Location.A3])
         XCTAssertEqual(board.availableLocations(from: Location.A2), [Location.A3])
         
         // black pawn A2 > A3
         let result = board.move(to: Location.A3, from: Location.A2)
         XCTAssertTrue(result)
-        XCTAssertEqual(pawn.location, Location.A3)
+        XCTAssertEqual(board.location(of: pawn), Location.A3)
         
         XCTAssertEqual(board.display(), """
          ABCDEFGH
@@ -83,7 +83,7 @@ class BoardTests: XCTestCase {
         
         XCTAssertFalse(board.move(to: Location.D2, from: Location.C1))
         
-        XCTAssertEqual(bishop.location, Location.C1)
+        XCTAssertEqual(board.location(of: bishop), Location.C1)
         
         XCTAssertTrue(board.move(to: Location.D3, from: Location.D2))
         
