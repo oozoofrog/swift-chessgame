@@ -88,6 +88,22 @@ public extension Location {
     static let F6 = Location(file: .F, rank: .six)
     static let F7 = Location(file: .F, rank: .seven)
     static let F8 = Location(file: .F, rank: .eight)
+    static let G1 = Location(file: .G, rank: .one)
+    static let G2 = Location(file: .G, rank: .two)
+    static let G3 = Location(file: .G, rank: .three)
+    static let G4 = Location(file: .G, rank: .four)
+    static let G5 = Location(file: .G, rank: .five)
+    static let G6 = Location(file: .G, rank: .six)
+    static let G7 = Location(file: .G, rank: .seven)
+    static let G8 = Location(file: .G, rank: .eight)
+    static let H1 = Location(file: .H, rank: .one)
+    static let H2 = Location(file: .H, rank: .two)
+    static let H3 = Location(file: .H, rank: .three)
+    static let H4 = Location(file: .H, rank: .four)
+    static let H5 = Location(file: .H, rank: .five)
+    static let H6 = Location(file: .H, rank: .six)
+    static let H7 = Location(file: .H, rank: .seven)
+    static let H8 = Location(file: .H, rank: .eight)
 }
 
 public enum File: String, CaseIterable, Hashable {

@@ -69,8 +69,8 @@ class PiecesTests: XCTestCase {
         XCTAssertEqual(whiteLuke.icon, "♖")
         XCTAssertEqual(whiteLuke.point, 5)
         
-        let blacks: [Location] = [.C1, .F1]
-        let whites: [Location] = [.C8, .F8]
+        let blacks: [Location] = [.A1, .H1]
+        let whites: [Location] = [.A8, .H8]
         let remains = prepare.locations.filter({ !blacks.contains($0) && !whites.contains($0) })
         for remain in remains {
             XCTAssertFalse(blackLuke.available(to: remain), remain.description)
