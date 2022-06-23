@@ -28,7 +28,7 @@ public final class Bishop: Piece {
         }
     }
     
-    public func available(to: Location?, from: Location? = nil) -> Bool {
+    public func available(to: Location?, from: Location?) -> Bool {
         guard let to = to else {
             return false
         }

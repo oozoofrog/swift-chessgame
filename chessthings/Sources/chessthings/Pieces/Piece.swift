@@ -17,14 +17,18 @@ public protocol Piece: CustomStringConvertible {
     var icon: Character { get }
     
     func available(to: Location?, from: Location?) -> Bool
+    func available(to: Location?) -> Bool
     
     func isEqual(_ other: Piece) -> Bool
 }
 
 extension Piece {
-    
     public func isEqual(_ other: Piece) -> Bool {
         uuid == other.uuid
+    }
+    
+    public func available(to: Location?) -> Bool {
+        available(to: to, from: nil)
     }
     
     public func availableLocations(_ locations: [Location], from: Location?) -> [Location] {
