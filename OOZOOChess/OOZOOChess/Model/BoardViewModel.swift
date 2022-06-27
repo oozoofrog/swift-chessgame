@@ -103,4 +103,14 @@ extension BoardViewModel {
         self.selectedLocation = location
     }
     
+    func move(to location: Location) -> Bool {
+        guard let current = self.selectedLocation else {
+            return false
+        }
+        guard available(location: location) else {
+            return false
+        }
+        return self.board.move(to: location, from: current)
+    }
+    
 }

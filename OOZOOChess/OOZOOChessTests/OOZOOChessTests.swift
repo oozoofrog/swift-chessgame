@@ -42,6 +42,6 @@ class OOZOOChessTests: XCTestCase {
         XCTAssertTrue(model.selected(location: .A7))
         
         // white pawn을 위로 한칸 이동한다
-        model.move(to: .A6)
+        XCTAssertTrue(model.move(to: .A6))
     }
 }
