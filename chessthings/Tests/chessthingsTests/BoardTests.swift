@@ -37,6 +37,9 @@ class BoardTests: XCTestCase {
          ABCDEFGH
         """)
         
+        let rook1 = board.piece(at: Location.A1)! as! Rook
+        XCTAssertFalse(board.move(to: Location.A2, from: Location.A1))
+        
         let pawn = board.piece(at: Location.A2)! as! Pawn
         XCTAssertEqual(pawn.availableLocations(prepared.locations, from: Location.A2), [Location.A3])
         XCTAssertEqual(board.availableLocations(from: Location.A2), [Location.A3])
