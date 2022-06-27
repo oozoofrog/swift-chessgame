@@ -35,5 +35,10 @@ class OOZOOChessTests: XCTestCase {
         XCTAssertEqual(model.piece(at: .A2)?.description, Pawn(.black).description)
         model.set(location: .A2)
         XCTAssertFalse(model.selected(location: .A2))
+        
+        // 백의 차례일 때 백을 둘 수 있다
+        XCTAssertEqual(model.piece(at: .A7)?.description, Pawn(.white).description)
+        model.set(location: .A7)
+        XCTAssertTrue(model.selected(location: .A7))
     }
 }
