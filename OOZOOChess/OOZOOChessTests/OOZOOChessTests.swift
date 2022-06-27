@@ -43,5 +43,8 @@ class OOZOOChessTests: XCTestCase {
         
         // white pawn을 위로 한칸 이동한다
         XCTAssertTrue(model.move(to: .A6))
+        
+        // 백이 말을 움직였기 때문에 흑으로 turn이 이동한다.
+        XCTAssertEqual(model.sideOfCurrentTurn, .black)
     }
 }
