@@ -10,6 +10,13 @@ import chessthings
 
 final class BoardViewModel: ObservableObject {
     
-    let board = Board()
+    private let board = Board()
+    
+    var display: String { board.display() }
+    
+    func prepare() {
+        board.prepare()
+        objectWillChange.send()
+    }
     
 }

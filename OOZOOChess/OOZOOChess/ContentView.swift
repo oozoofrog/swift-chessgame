@@ -10,7 +10,9 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var model: BoardViewModel
     var body: some View {
-        Text(model.board.display())
+        Text(model.display).onAppear {
+            model.prepare()
+        }
     }
 }
 
