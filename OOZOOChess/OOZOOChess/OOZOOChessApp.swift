@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import chessthings
 
 @main
 struct OOZOOChessApp: App {

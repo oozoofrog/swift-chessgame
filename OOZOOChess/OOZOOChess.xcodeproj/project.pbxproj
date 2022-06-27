@@ -11,6 +11,7 @@
 		06FE8F2C2869858000168738 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FE8F2B2869858000168738 /* ContentView.swift */; };
 		06FE8F2E2869858100168738 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06FE8F2D2869858100168738 /* Assets.xcassets */; };
 		06FE8F312869858100168738 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06FE8F302869858100168738 /* Preview Assets.xcassets */; };
+		06FE8F3B286985D500168738 /* chessthings in Frameworks */ = {isa = PBXBuildFile; productRef = 06FE8F3A286985D500168738 /* chessthings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		06FE8F2B2869858000168738 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		06FE8F2D2869858100168738 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		06FE8F302869858100168738 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		06FE8F38286985BB00168738 /* chessthings */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = chessthings; path = ../chessthings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06FE8F3B286985D500168738 /* chessthings in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -35,8 +38,10 @@
 		06FE8F1D2869858000168738 = {
 			isa = PBXGroup;
 			children = (
+				06FE8F37286985BB00168738 /* Packages */,
 				06FE8F282869858000168738 /* OOZOOChess */,
 				06FE8F272869858000168738 /* Products */,
+				06FE8F39286985D500168738 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +72,21 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		06FE8F37286985BB00168738 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				06FE8F38286985BB00168738 /* chessthings */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		06FE8F39286985D500168738 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -83,6 +103,9 @@
 			dependencies = (
 			);
 			name = OOZOOChess;
+			packageProductDependencies = (
+				06FE8F3A286985D500168738 /* chessthings */,
+			);
 			productName = OOZOOChess;
 			productReference = 06FE8F262869858000168738 /* OOZOOChess.app */;
 			productType = "com.apple.product-type.application";
@@ -339,6 +362,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		06FE8F3A286985D500168738 /* chessthings */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = chessthings;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 06FE8F1E2869858000168738 /* Project object */;
 }
