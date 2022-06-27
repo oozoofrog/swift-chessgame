@@ -32,6 +32,10 @@ extension BoardViewModel {
         board.point(for: .white)
     }
     
+    var sideOfCurrentTurn: Side {
+        .white
+    }
+    
     func selectedLocation(column: Int, row: Int) -> Bool {
         guard column > 0, row > 0 else {
             return false

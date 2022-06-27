@@ -27,7 +27,7 @@ class OOZOOChessTests: XCTestCase {
         XCTAssertEqual(model.pointForBlack, 24)
         XCTAssertEqual(model.pointForWhite, 24)
         
-        // 첫 턴은 black
-        XCTAssertEqual(model.sideOfCurrentTurn, .black)
+        // 첫 턴은 백
+        XCTAssertEqual(model.sideOfCurrentTurn, .white)
     }
 }
