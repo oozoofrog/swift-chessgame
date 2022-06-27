@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import chessthings
 @testable import OOZOOChess
 
 class OOZOOChessTests: XCTestCase {
@@ -29,5 +30,10 @@ class OOZOOChessTests: XCTestCase {
         
         // 첫 턴은 백
         XCTAssertEqual(model.sideOfCurrentTurn, .white)
+        
+        // 백의 차례일 때 흑을 둘 수는 없다
+        XCTAssertEqual(model.piece(at: .A2)?.description, Pawn(.black).description)
+        model.set(location: .A2)
+        XCTAssertFalse(model.selected(location: .A2))
     }
 }

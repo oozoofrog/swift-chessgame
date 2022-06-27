@@ -36,11 +36,19 @@ extension BoardViewModel {
         .white
     }
     
+    func piece(at location: Location) -> Piece? {
+        board.piece(at: location)
+    }
+    
     func selectedLocation(column: Int, row: Int) -> Bool {
         guard column > 0, row > 0 else {
             return false
         }
-        return self.selectedLocation == Location(file: board.files[column - 1], rank: board.ranks[row - 1])
+        return selected(location: Location(file: board.files[column - 1], rank: board.ranks[row - 1]))
+    }
+    
+    func selected(location: Location?) -> Bool {
+        return self.selectedLocation == location
     }
     
     func availableLocation(column: Int, row: Int) -> Bool {
@@ -82,6 +90,10 @@ extension BoardViewModel {
     func setLocation(column: Int, row: Int) {
         self.selectedLocation = Location(file: board.files[column - 1], rank: board.ranks[row - 1])
         print(board.description(at: self.selectedLocation))
+    }
+    
+    func set(location: Location) {
+        self.selectedLocation = location
     }
     
 }
