@@ -13,7 +13,18 @@
 		06FE8F312869858100168738 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06FE8F302869858100168738 /* Preview Assets.xcassets */; };
 		06FE8F3B286985D500168738 /* chessthings in Frameworks */ = {isa = PBXBuildFile; productRef = 06FE8F3A286985D500168738 /* chessthings */; };
 		06FE8F412869885100168738 /* BoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FE8F402869885100168738 /* BoardViewModel.swift */; };
+		06FE8F492869A35800168738 /* OOZOOChessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FE8F482869A35800168738 /* OOZOOChessTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		06FE8F4A2869A35800168738 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 06FE8F1E2869858000168738 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 06FE8F252869858000168738;
+			remoteInfo = OOZOOChess;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		06FE8F262869858000168738 /* OOZOOChess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OOZOOChess.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -23,6 +34,8 @@
 		06FE8F302869858100168738 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		06FE8F38286985BB00168738 /* chessthings */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = chessthings; path = ../chessthings; sourceTree = "<group>"; };
 		06FE8F402869885100168738 /* BoardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewModel.swift; sourceTree = "<group>"; };
+		06FE8F462869A35800168738 /* OOZOOChessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OOZOOChessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		06FE8F482869A35800168738 /* OOZOOChessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OOZOOChessTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +47,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		06FE8F432869A35800168738 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -42,6 +62,7 @@
 			children = (
 				06FE8F37286985BB00168738 /* Packages */,
 				06FE8F282869858000168738 /* OOZOOChess */,
+				06FE8F472869A35800168738 /* OOZOOChessTests */,
 				06FE8F272869858000168738 /* Products */,
 				06FE8F39286985D500168738 /* Frameworks */,
 			);
@@ -51,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				06FE8F262869858000168738 /* OOZOOChess.app */,
+				06FE8F462869A35800168738 /* OOZOOChessTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -98,6 +120,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		06FE8F472869A35800168738 /* OOZOOChessTests */ = {
+			isa = PBXGroup;
+			children = (
+				06FE8F482869A35800168738 /* OOZOOChessTests.swift */,
+			);
+			path = OOZOOChessTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -121,6 +151,24 @@
 			productReference = 06FE8F262869858000168738 /* OOZOOChess.app */;
 			productType = "com.apple.product-type.application";
 		};
+		06FE8F452869A35800168738 /* OOZOOChessTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 06FE8F4C2869A35800168738 /* Build configuration list for PBXNativeTarget "OOZOOChessTests" */;
+			buildPhases = (
+				06FE8F422869A35800168738 /* Sources */,
+				06FE8F432869A35800168738 /* Frameworks */,
+				06FE8F442869A35800168738 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				06FE8F4B2869A35800168738 /* PBXTargetDependency */,
+			);
+			name = OOZOOChessTests;
+			productName = OOZOOChessTests;
+			productReference = 06FE8F462869A35800168738 /* OOZOOChessTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -133,6 +181,10 @@
 				TargetAttributes = {
 					06FE8F252869858000168738 = {
 						CreatedOnToolsVersion = 13.4.1;
+					};
+					06FE8F452869A35800168738 = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = 06FE8F252869858000168738;
 					};
 				};
 			};
@@ -150,6 +202,7 @@
 			projectRoot = "";
 			targets = (
 				06FE8F252869858000168738 /* OOZOOChess */,
+				06FE8F452869A35800168738 /* OOZOOChessTests */,
 			);
 		};
 /* End PBXProject section */
@@ -161,6 +214,13 @@
 			files = (
 				06FE8F312869858100168738 /* Preview Assets.xcassets in Resources */,
 				06FE8F2E2869858100168738 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		06FE8F442869A35800168738 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,7 +237,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		06FE8F422869A35800168738 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06FE8F492869A35800168738 /* OOZOOChessTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		06FE8F4B2869A35800168738 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 06FE8F252869858000168738 /* OOZOOChess */;
+			targetProxy = 06FE8F4A2869A35800168738 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		06FE8F322869858100168738 /* Debug */ = {
@@ -352,6 +428,42 @@
 			};
 			name = Release;
 		};
+		06FE8F4D2869A35800168738 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HY47J4787Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oozoofrog.OOZOOChessTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OOZOOChess.app/OOZOOChess";
+			};
+			name = Debug;
+		};
+		06FE8F4E2869A35800168738 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HY47J4787Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oozoofrog.OOZOOChessTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OOZOOChess.app/OOZOOChess";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -369,6 +481,15 @@
 			buildConfigurations = (
 				06FE8F352869858100168738 /* Debug */,
 				06FE8F362869858100168738 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		06FE8F4C2869A35800168738 /* Build configuration list for PBXNativeTarget "OOZOOChessTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06FE8F4D2869A35800168738 /* Debug */,
+				06FE8F4E2869A35800168738 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

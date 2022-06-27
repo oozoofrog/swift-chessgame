@@ -8,16 +8,28 @@
 import Foundation
 import chessthings
 
+// MARK: - 초기값 혹은 states
 final class BoardViewModel: ObservableObject {
     
-    func prepare() {
-        board.prepare()
-        objectWillChange.send()
+    @Published private var selectedLocation: Location?
+    
+    var columnCount: Int { board.files.count + 1 }
+    var rowCount: Int { board.ranks.count + 1 }
+    var gridCount: Int { columnCount * rowCount }
+    
+    fileprivate let board: Board = Board()
+    
+}
+
+// MARK: - status
+extension BoardViewModel {
+    
+    var pointForBlack: Int {
+        board.point(for: .black)
     }
     
-    func setLocation(column: Int, row: Int) {
-        self.selectedLocation = Location(file: board.files[column - 1], rank: board.ranks[row - 1])
-        print(board.description(at: self.selectedLocation))
+    var pointForWhite: Int {
+        board.point(for: .white)
     }
     
     func selectedLocation(column: Int, row: Int) -> Bool {
@@ -53,12 +65,19 @@ final class BoardViewModel: ObservableObject {
             return " "
         }
     }
+}
+
+// MARK: - Action
+extension BoardViewModel {
     
-    var columnCount: Int { board.files.count + 1 }
-    var rowCount: Int { board.ranks.count + 1 }
-    var gridCount: Int { columnCount * rowCount }
+    func prepare() {
+        board.prepare()
+        objectWillChange.send()
+    }
     
-    @Published private var selectedLocation: Location?
-   
-    private let board: Board = Board()
+    func setLocation(column: Int, row: Int) {
+        self.selectedLocation = Location(file: board.files[column - 1], rank: board.ranks[row - 1])
+        print(board.description(at: self.selectedLocation))
+    }
+    
 }
