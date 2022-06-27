@@ -143,4 +143,16 @@ public final class Board {
             return pieces.values.filter({ $0.side == .white }).map(\.point).reduce(0, +)
         }
     }
+    
+    public func description(at location: Location?) -> String {
+        guard let location = location else {
+            return ""
+        }
+
+        guard let piece = piece(at: location) else {
+            return "Empty.\(location)"
+        }
+        
+        return "\(piece).\(location)"
+    }
 }
