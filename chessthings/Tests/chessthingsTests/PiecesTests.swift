@@ -60,27 +60,51 @@ class PiecesTests: XCTestCase {
         }
     }
     
-    func testLuke() {
-        let blackLuke = Rook(.black)
-        XCTAssertEqual(blackLuke.icon, "♜")
-        XCTAssertEqual(blackLuke.point, 5)
+    func testRook() {
+        let blackRook = Rook(.black)
+        XCTAssertEqual(blackRook.icon, "♜")
+        XCTAssertEqual(blackRook.point, 5)
         
-        let whiteLuke = Rook(.white)
-        XCTAssertEqual(whiteLuke.icon, "♖")
-        XCTAssertEqual(whiteLuke.point, 5)
+        let whiteRook = Rook(.white)
+        XCTAssertEqual(whiteRook.icon, "♖")
+        XCTAssertEqual(whiteRook.point, 5)
         
         let blacks: [Location] = [.A1, .H1]
         let whites: [Location] = [.A8, .H8]
         let remains = prepare.locations.filter({ !blacks.contains($0) && !whites.contains($0) })
         for remain in remains {
-            XCTAssertFalse(blackLuke.available(to: remain), remain.description)
-            XCTAssertFalse(whiteLuke.available(to: remain), remain.description)
+            XCTAssertFalse(blackRook.available(to: remain), remain.description)
+            XCTAssertFalse(whiteRook.available(to: remain), remain.description)
         }
         for black in blacks {
-            XCTAssertTrue(blackLuke.available(to: black))
+            XCTAssertTrue(blackRook.available(to: black))
         }
         for white in whites {
-            XCTAssertTrue(whiteLuke.available(to: white))
+            XCTAssertTrue(whiteRook.available(to: white))
+        }
+        
+        // 뭘 테스트 해야하더라.....
+        // 룩은 대각선 이동은 안되고 현재 위치에서 위 아래 혹은 좌 우로만 이동이 가능하다
+        // 블랙 룩 하나를 테스트 해보자
+        let black = Rook(.black)
+        let from = Location(file: .D, rank: .four)
+        // 여기서 이동이 가능한 위치는
+        // rank == 4 인 경우 file == C|E
+        // file == D 인 경우 rank == 3|5
+        // 이 외에는 다 실패
+        let availableLocations = [Location(file: .C, rank: .four),
+                                  Location(file: .E, rank: .four),
+                                  Location(file: .D, rank: .three),
+                                  Location(file: .D, rank: .five)]
+        
+        for location in prepare.locations {
+            let available = black.available(to: location, from: from)
+            let description = "\(from) > \(location) == \(available)"
+            if availableLocations.contains(location) {
+                XCTAssertTrue(available, description)
+            } else {
+                XCTAssertFalse(available, description)
+            }
         }
     }
     

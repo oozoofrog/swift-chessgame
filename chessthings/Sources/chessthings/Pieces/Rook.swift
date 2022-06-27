@@ -33,7 +33,13 @@ public final class Rook: Piece {
             return false
         }
         if let from = from {
-            return false
+            if to.rank == from.rank {
+                return abs(to.file.offset(from.file)) == 1
+            } else if to.file == from.file {
+                return abs(to.rank.offset(from.rank)) == 1
+            } else {
+                return false
+            }
         } else {
             switch side {
             case .black:
