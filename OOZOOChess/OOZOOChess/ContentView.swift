@@ -23,6 +23,10 @@ struct ContentView: View {
                                 Text(model.icon(column: column, row: row))
                                     .font(.largeTitle.monospaced())
                                     .fixedSize()
+                                    .background(self.model.selectedPosition(column: column, row: row) ? .red : .clear)
+                                    .onTapGesture {
+                                        self.model.setPosition(column: column, row: row)
+                                    }
                             }
                         }
                     }

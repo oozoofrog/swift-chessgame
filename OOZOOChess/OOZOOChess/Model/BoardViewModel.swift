@@ -10,8 +10,29 @@ import chessthings
 
 final class BoardViewModel: ObservableObject {
     
+    func prepare() {
+        board.prepare()
+        objectWillChange.send()
+    }
+    
+    func setPosition(column: Int, row: Int) {
+        guard column > 0, row > 0 else {
+            return
+        }
+        self.selectedPosition = Position(column: column, row: row)
+    }
+    
+    func selectedPosition(column: Int, row: Int) -> Bool {
+        guard let currentPosition = self.selectedPosition else {
+            return false
+        }
+        return currentPosition.column == column && currentPosition.row == row
+    }
+    
     let fileCount: Int
     let rankCount: Int
+    
+    @Published private var selectedPosition: Position?
     
     func icon(column: Int, row: Int) -> String {
         if column > 0 && row > 0 {
@@ -25,11 +46,6 @@ final class BoardViewModel: ObservableObject {
         }
     }
     
-    func prepare() {
-        board.prepare()
-        objectWillChange.send()
-    }
-    
     init() {
         self.board = Board()
         self.fileCount = board.files.count + 1
@@ -38,4 +54,8 @@ final class BoardViewModel: ObservableObject {
     
     private let board: Board
     
+    struct Position {
+        let column: Int
+        let row: Int
+    }
 }
