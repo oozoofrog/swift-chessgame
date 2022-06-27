@@ -19,10 +19,14 @@ struct ContentView: View {
                 LazyVGrid(columns: columnGridItems) {
                     ForEach(0..<model.gridCount, id: \.self) { index in
                         let (column, row) = model.position(at: index)
-                        Text(model.icon(column: column, row: row))
+                        Text(model.icon(column: column, row: row).replacingOccurrences(of: ".", with: " "))
                             .font(.largeTitle.monospaced())
                             .fixedSize()
+                            .padding(3)
+                            .frame(height: 30)
                             .background(backgroundColor(column: column, row: row))
+                            .cornerRadius(3)
+                            .shadow(color: .gray, radius: 3, x: 2, y: 2)
                             .onTapGesture {
                                 self.model.setLocation(column: column, row: row)
                             }
@@ -32,7 +36,9 @@ struct ContentView: View {
                 Spacer()
             }
             Spacer()
-        }.onAppear {
+        }
+        .background(.gray.opacity(0.3))
+        .onAppear {
             model.prepare()
         }
     }
@@ -42,8 +48,10 @@ struct ContentView: View {
             return .red
         } else if model.availableLocation(column: column, row: row) {
             return .blue
-        } else {
+        } else if column == 0 || row == 0 {
             return .clear
+        } else {
+            return .white
         }
     }
     
