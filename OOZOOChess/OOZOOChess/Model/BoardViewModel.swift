@@ -88,11 +88,16 @@ extension BoardViewModel {
     }
     
     func setLocation(column: Int, row: Int) {
-        self.selectedLocation = Location(file: board.files[column - 1], rank: board.ranks[row - 1])
-        print(board.description(at: self.selectedLocation))
+        self.set(location: Location(file: board.files[column - 1], rank: board.ranks[row - 1]))
     }
     
     func set(location: Location) {
+        guard let piece = board.piece(at: location) else {
+            return
+        }
+        guard piece.side == sideOfCurrentTurn else {
+            return
+        }
         self.selectedLocation = location
     }
     
