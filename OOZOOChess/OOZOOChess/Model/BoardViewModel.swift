@@ -55,9 +55,11 @@ extension BoardViewModel {
         guard column > 0, row > 0 else {
             return false
         }
-        
-        let location = Location(file: board.files[column - 1], rank: board.ranks[row - 1])
-        return board.availableLocations(from: selectedLocation).contains(location)
+        return available(location: Location(file: board.files[column - 1], rank: board.ranks[row - 1]))
+    }
+    
+    func available(location: Location) -> Bool {
+        board.availableLocations(from: selectedLocation).contains(location)
     }
     
     func position(at index: Int) -> (column: Int, row: Int) {
