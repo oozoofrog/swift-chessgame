@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class Luke: Piece {
+public final class Rook: Piece {
     
     public let uuid: UUID = UUID()
     

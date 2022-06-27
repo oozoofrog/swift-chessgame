@@ -98,10 +98,10 @@ public final class Board {
             Location(file: .H, rank: .eight)
         ]
         blackLukeLocations.forEach { location in
-            pieces[location] = Luke(.black)
+            pieces[location] = Rook(.black)
         }
         whiteLukeLocations.forEach { location in
-            pieces[location] = Luke(.white)
+            pieces[location] = Rook(.white)
         }
     }
     

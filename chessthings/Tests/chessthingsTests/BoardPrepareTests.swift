@@ -58,13 +58,13 @@ final class chessthingsTests: XCTestCase {
     
     func testBoardPrepareLuke() {
         for location in prepared.blackLukes {
-            let pawn = board.piece(at: location) as? Luke
+            let pawn = board.piece(at: location) as? Rook
             let description = pawn?.description ?? "Empty.\(location)"
             XCTAssertEqual(pawn?.side, .black, description)
         }
         
         for location in prepared.whiteLukes {
-            let pawn = board.piece(at: location) as? Luke
+            let pawn = board.piece(at: location) as? Rook
             let description = pawn?.description ?? "Empty.\(location)"
             XCTAssertEqual(pawn?.side, .white, description)
         }

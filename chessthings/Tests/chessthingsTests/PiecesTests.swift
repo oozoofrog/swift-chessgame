@@ -61,11 +61,11 @@ class PiecesTests: XCTestCase {
     }
     
     func testLuke() {
-        let blackLuke = Luke(.black)
+        let blackLuke = Rook(.black)
         XCTAssertEqual(blackLuke.icon, "♜")
         XCTAssertEqual(blackLuke.point, 5)
         
-        let whiteLuke = Luke(.white)
+        let whiteLuke = Rook(.white)
         XCTAssertEqual(whiteLuke.icon, "♖")
         XCTAssertEqual(whiteLuke.point, 5)
         
