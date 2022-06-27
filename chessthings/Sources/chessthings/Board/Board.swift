@@ -3,7 +3,12 @@ import Foundation
 
 public final class Board {
     
+    public init() {}
+    
     private(set) var pieces: [Location: Piece] = [:]
+    
+    public var files: [File] { File.allCases }
+    public var ranks: [Rank] { Rank.allCases }
     
     public func display() -> String {
         var displays: [String] = [" \(File.allCases.map(\.rawValue).joined())"]

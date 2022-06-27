@@ -6,16 +6,22 @@
 //
 
 import SwiftUI
+import chessthings
 
 struct ContentView: View {
+    @State var board: String = ""
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        Text(board)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
+    static var board: Board = {
+        let board = Board()
+        board.prepare()
+        return board
+    }()
     static var previews: some View {
-        ContentView()
+        ContentView(board: self.board.display())
     }
 }
