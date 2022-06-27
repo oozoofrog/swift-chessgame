@@ -28,6 +28,6 @@ class OOZOOChessTests: XCTestCase {
         XCTAssertEqual(model.pointForWhite, 24)
         
         // 첫 턴은 black
-        
+        XCTAssertEqual(model.sideOfCurrentTurn, .black)
     }
 }
