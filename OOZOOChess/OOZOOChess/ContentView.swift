@@ -10,9 +10,11 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var model: BoardViewModel
     var body: some View {
-        Text(model.display).onAppear {
-            model.prepare()
-        }
+        Text(model.display)
+            .font(.title3.monospaced())
+            .onAppear {
+                model.prepare()
+            }
     }
 }
 
