@@ -13,6 +13,8 @@ final class BoardViewModel: ObservableObject {
     
     @Published private var selectedLocation: Location?
     
+    var sideOfCurrentTurn: Side = .white
+    
     var columnCount: Int { board.files.count + 1 }
     var rowCount: Int { board.ranks.count + 1 }
     var gridCount: Int { columnCount * rowCount }
@@ -30,10 +32,6 @@ extension BoardViewModel {
     
     var pointForWhite: Int {
         board.point(for: .white)
-    }
-    
-    var sideOfCurrentTurn: Side {
-        .white
     }
     
     func piece(at location: Location) -> Piece? {
@@ -110,7 +108,11 @@ extension BoardViewModel {
         guard available(location: location) else {
             return false
         }
-        return self.board.move(to: location, from: current)
+        let result = self.board.move(to: location, from: current)
+        if result {
+            self.sideOfCurrentTurn.toggle()
+        }
+        return result
     }
     
 }
